@@ -1,0 +1,354 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Quicksand',sans-serif;background:#0a1628;color:#fff;overflow-x:hidden}
+
+/* Hero */
+.hero{position:relative;height:100vh;min-height:500px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;overflow:hidden;background:linear-gradient(160deg,#0a1628 0%,#0d2347 50%,#0a3a6e 100%)}
+.hero-bg{position:absolute;inset:0;overflow:hidden}
+.star{position:absolute;border-radius:50%;background:#fff;animation:twinkle 3s infinite}
+@keyframes twinkle{0%,100%{opacity:.2;transform:scale(1)}50%{opacity:1;transform:scale(1.4)}}
+.mountain{position:absolute;bottom:0;width:100%}
+.city-lights{position:absolute;bottom:0;width:100%;height:120px;background:linear-gradient(to top,rgba(255,200,50,.08),transparent)}
+
+.hero-badge{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.25);border-radius:100px;padding:6px 18px;font-size:13px;color:rgba(255,255,255,.8);letter-spacing:2px;text-transform:uppercase;margin-bottom:20px;animation:fadeDown .8s ease both}
+.hero h1{font-size:clamp(52px,10vw,96px);font-weight:700;letter-spacing:-2px;line-height:1;margin-bottom:16px;animation:fadeDown .9s ease both;animation-delay:.1s;background:linear-gradient(135deg,#fff 30%,#7dd3fc);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero p{font-size:clamp(14px,2vw,18px);color:rgba(255,255,255,.7);max-width:520px;line-height:1.7;margin-bottom:36px;animation:fadeDown 1s ease both;animation-delay:.2s}
+.hero-buttons{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;animation:fadeDown 1s ease both;animation-delay:.3s}
+.btn-primary{background:#3b82f6;color:#fff;border:none;padding:14px 28px;border-radius:100px;font-size:15px;font-weight:600;font-family:inherit;cursor:pointer;transition:all .3s;text-decoration:none}
+.btn-primary:hover{background:#2563eb;transform:translateY(-2px);box-shadow:0 12px 32px rgba(59,130,246,.4)}
+.btn-outline{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.4);padding:14px 28px;border-radius:100px;font-size:15px;font-weight:600;font-family:inherit;cursor:pointer;transition:all .3s;text-decoration:none}
+.btn-outline:hover{background:rgba(255,255,255,.1);transform:translateY(-2px)}
+.scroll-hint{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);animation:bounce 2s infinite;color:rgba(255,255,255,.4);font-size:13px;display:flex;flex-direction:column;align-items:center;gap:6px}
+.scroll-hint::after{content:'';width:1px;height:32px;background:linear-gradient(to bottom,rgba(255,255,255,.4),transparent)}
+@keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(-8px)}}
+@keyframes fadeDown{from{opacity:0;transform:translateY(-20px)}to{opacity:1;transform:translateY(0)}}
+
+/* Stats bar */
+.stats-bar{background:rgba(255,255,255,.04);border-top:1px solid rgba(255,255,255,.08);border-bottom:1px solid rgba(255,255,255,.08);padding:24px 40px;display:flex;justify-content:center;gap:60px;flex-wrap:wrap}
+.stat-item{text-align:center}
+.stat-num{font-size:28px;font-weight:700;color:#7dd3fc;display:block}
+.stat-label{font-size:12px;color:rgba(255,255,255,.5);letter-spacing:1px;text-transform:uppercase;margin-top:2px}
+
+/* Nav */
+.nav-sticky{position:sticky;top:0;z-index:100;background:rgba(10,22,40,.9);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.08);padding:0 40px;display:flex;justify-content:space-between;align-items:center;height:60px}
+.nav-logo{font-weight:700;font-size:18px;color:#7dd3fc;letter-spacing:-0.5px}
+.nav-links{display:flex;gap:32px;list-style:none}
+.nav-links a{color:rgba(255,255,255,.6);text-decoration:none;font-size:14px;font-weight:600;transition:color .2s;position:relative;padding-bottom:2px}
+.nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:#3b82f6;border-radius:2px;transition:width .3s}
+.nav-links a:hover{color:#fff}
+.nav-links a:hover::after{width:100%}
+
+/* Sections */
+.section{padding:80px 40px;max-width:1100px;margin:0 auto}
+.section-tag{font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#3b82f6;margin-bottom:12px}
+.section-title{font-size:clamp(28px,4vw,42px);font-weight:700;line-height:1.2;margin-bottom:16px}
+.section-sub{color:rgba(255,255,255,.6);font-size:16px;line-height:1.7;max-width:560px;margin-bottom:48px}
+
+/* Cards */
+.card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+.card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:20px;padding:28px;transition:all .4s;cursor:default;position:relative;overflow:hidden}
+.card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(59,130,246,.07),transparent);opacity:0;transition:opacity .4s}
+.card:hover{transform:translateY(-6px);border-color:rgba(59,130,246,.4);background:rgba(255,255,255,.07)}
+.card:hover::before{opacity:1}
+.card-icon{width:48px;height:48px;border-radius:14px;background:rgba(59,130,246,.15);display:flex;align-items:center;justify-content:center;margin-bottom:20px;font-size:22px}
+.card h3{font-size:18px;font-weight:700;margin-bottom:10px}
+.card p{color:rgba(255,255,255,.6);font-size:14px;line-height:1.7}
+
+/* Wisata cards */
+.wisata-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px}
+.wisata-card{border-radius:20px;overflow:hidden;position:relative;min-height:240px;display:flex;align-items:flex-end;cursor:pointer;transition:transform .4s}
+.wisata-card:hover{transform:scale(1.02)}
+.wisata-bg{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:80px}
+.wisata-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.85) 40%,rgba(0,0,0,.1))}
+.wisata-content{position:relative;padding:24px;width:100%}
+.wisata-tag{background:rgba(59,130,246,.8);font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:4px 10px;border-radius:100px;display:inline-block;margin-bottom:10px}
+.wisata-card h3{font-size:20px;font-weight:700;margin-bottom:6px}
+.wisata-card p{color:rgba(255,255,255,.7);font-size:13px;line-height:1.6}
+
+/* Info table section */
+.info-split{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+@media(max-width:680px){.info-split{grid-template-columns:1fr}}
+.info-table{width:100%;border-collapse:collapse}
+.info-table tr{border-bottom:1px solid rgba(255,255,255,.07);transition:background .2s}
+.info-table tr:hover{background:rgba(255,255,255,.04)}
+.info-table th{padding:14px 16px;text-align:left;font-size:13px;color:rgba(255,255,255,.45);font-weight:600;width:45%}
+.info-table td{padding:14px 16px;font-size:14px;font-weight:600;color:#e2e8f0}
+.city-visual{border-radius:24px;overflow:hidden;background:linear-gradient(135deg,#0d2347,#0a3a6e);padding:32px;text-align:center;border:1px solid rgba(255,255,255,.1)}
+.city-seal{font-size:96px;display:block;margin-bottom:16px;animation:float 4s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+.city-name-big{font-size:32px;font-weight:700;color:#7dd3fc;letter-spacing:-1px}
+.city-sub{color:rgba(255,255,255,.5);font-size:13px;margin-top:4px}
+
+/* Timeline */
+.timeline{position:relative;padding-left:28px}
+.timeline::before{content:'';position:absolute;left:7px;top:8px;bottom:8px;width:1.5px;background:linear-gradient(to bottom,#3b82f6,rgba(59,130,246,.1))}
+.timeline-item{position:relative;margin-bottom:32px;animation:slideIn .6s ease both}
+.timeline-item::before{content:'';position:absolute;left:-25px;top:5px;width:10px;height:10px;border-radius:50%;background:#3b82f6;box-shadow:0 0 0 3px rgba(59,130,246,.2)}
+@keyframes slideIn{from{opacity:0;transform:translateX(-10px)}to{opacity:1;transform:translateX(0)}}
+.timeline-year{font-size:12px;color:#3b82f6;font-weight:700;letter-spacing:1px;margin-bottom:4px}
+.timeline-text{font-size:14px;color:rgba(255,255,255,.7);line-height:1.6}
+
+/* Footer */
+.footer{background:rgba(255,255,255,.02);border-top:1px solid rgba(255,255,255,.07);padding:40px;text-align:center}
+.footer p{color:rgba(255,255,255,.35);font-size:13px}
+.footer-wave{font-size:28px;margin-bottom:12px}
+
+/* Animations on scroll */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:none}
+</style>
+</head>
+<body>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-bg" id="heroBg"></div>
+  <div style="position:relative;z-index:1;padding:20px">
+    <div class="hero-badge">Jawa Barat, Indonesia</div>
+    <h1>Bandung</h1>
+    <p>Kota metropolitan yang memadukan keanggunan budaya Sunda, arsitektur kolonial, dan semangat kreativitas modern.</p>
+    <div class="hero-buttons">
+      <a href="#sejarah" class="btn-primary">Jelajahi Kota</a>
+      <a href="#wisata" class="btn-outline">Destinasi Wisata</a>
+    </div>
+  </div>
+  <div class="scroll-hint">Scroll</div>
+</section>
+
+<!-- Stats -->
+<div class="stats-bar reveal">
+  <div class="stat-item"><span class="stat-num" id="s1">0</span><span class="stat-label">km² Luas Kota</span></div>
+  <div class="stat-item"><span class="stat-num" id="s2">0</span><span class="stat-label">m Ketinggian</span></div>
+  <div class="stat-item"><span class="stat-num" id="s3">0</span><span class="stat-label">Juta Penduduk</span></div>
+  <div class="stat-item"><span class="stat-num" id="s4">0</span><span class="stat-label">Tahun Berdiri</span></div>
+</div>
+
+<!-- Nav -->
+<nav class="nav-sticky">
+  <span class="nav-logo">🌺 Bandung</span>
+  <ul class="nav-links">
+    <li><a href="#sejarah">Sejarah</a></li>
+    <li><a href="#geografis">Geografis</a></li>
+    <li><a href="#wisata">Wisata</a></li>
+    <li><a href="#info">Info</a></li>
+  </ul>
+</nav>
+
+<!-- Sejarah -->
+<section class="section" id="sejarah">
+  <div class="reveal">
+    <div class="section-tag">Sejarah</div>
+    <h2 class="section-title">Asal Usul Kota Kembang</h2>
+    <p class="section-sub">Perjalanan panjang sebuah kota yang lahir dari legenda dan tumbuh menjadi permata Jawa Barat.</p>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-bottom:40px" class="reveal">
+    <div class="card">
+      <div class="card-icon">🏞️</div>
+      <h3>Asal Nama</h3>
+      <p>Berasal dari kata <em>bendungan</em> — mengacu pada terbendungnya Sungai Citarum oleh lava Gunung Tangkuban Parahu yang membentuk telaga purba.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">⛵</div>
+      <h3>Legenda Perahu</h3>
+      <p>Bupati R.A. Wiranatakusumah II menyusuri Ci Tarum dengan <em>perahu bandung</em> — dua perahu berdampingan — mencari lokasi ibukota baru.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🌿</div>
+      <h3>Filosofi Sunda</h3>
+      <p><em>Nga-Bandung-an Banda Indung</em> — menyaksikan bumi sebagai ibu pertiwi. Sebuah makna sakral dalam ajaran leluhur Sunda.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🏛️</div>
+      <h3>Paris van Java</h3>
+      <p>Dijuluki "Paris-nya Jawa" oleh penjajah Belanda karena kecantikan kotanya, bangunan art-deco, dan iklimnya yang sejuk menyegarkan.</p>
+    </div>
+  </div>
+  <div class="timeline reveal">
+    <div class="timeline-item"><div class="timeline-year">1810</div><div class="timeline-text">Bandung resmi berdiri sebagai kota pada 25 September 1810 di bawah pemerintahan kolonial.</div></div>
+    <div class="timeline-item"><div class="timeline-year">1880-an</div><div class="timeline-text">Jalur kereta api dibangun, menghubungkan Bandung dengan Batavia dan membuka era modernisasi kota.</div></div>
+    <div class="timeline-item"><div class="timeline-year">1955</div><div class="timeline-text">Konferensi Asia–Afrika bersejarah diselenggarakan di Bandung, menjadikan kota ini panggung diplomasi dunia.</div></div>
+    <div class="timeline-item"><div class="timeline-year">2004</div><div class="timeline-text">Jalan Tol Cipularang dibuka, mengukuhkan Bandung sebagai destinasi wisata akhir pekan favorit warga Jakarta.</div></div>
+  </div>
+</section>
+
+<!-- Geografis -->
+<section style="background:rgba(255,255,255,.02);border-top:1px solid rgba(255,255,255,.07);border-bottom:1px solid rgba(255,255,255,.07)">
+<div class="section" id="geografis">
+  <div class="reveal">
+    <div class="section-tag">Geografis</div>
+    <h2 class="section-title">Mangkuk Raksasa di Pegunungan</h2>
+    <p class="section-sub">Dikelilingi perbukitan hijau dan dialiri dua sungai utama — geografi Bandung membentuk karakter unik kota ini.</p>
+  </div>
+  <div class="card-grid reveal">
+    <div class="card">
+      <div class="card-icon">⛰️</div>
+      <h3>Ketinggian</h3>
+      <p>Berada di ±768 mdpl, dengan titik tertinggi 1.050 m di utara dan 675 m di selatan — menciptakan iklim sejuk khas pegunungan.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🌊</div>
+      <h3>Sungai Utama</h3>
+      <p>Sungai Cikapundung dan Sungai Citarum mengaliri kota, keduanya bermuara di Citarum — tulang punggung sistem hidrologi Bandung.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🗺️</div>
+      <h3>Bentuk Geografi</h3>
+      <p>Morfologi kota berbentuk seperti mangkok raksasa — dikelilingi pegunungan di segala penjuru dan membentuk cekungan alami yang indah.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">☔</div>
+      <h3>Kondisi Iklim</h3>
+      <p>Bandung selatan rentan banjir di musim hujan akibat topografi yang lebih rendah. Namun iklimnya secara umum segar dan menyenangkan sepanjang tahun.</p>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- Wisata -->
+<div class="section" id="wisata">
+  <div class="reveal">
+    <div class="section-tag">Destinasi Wisata</div>
+    <h2 class="section-title">Pesona yang Tak Ada Habisnya</h2>
+    <p class="section-sub">Dari nuansa Eropa hingga astronomi bintang — Bandung menawarkan pengalaman yang tak terlupakan.</p>
+  </div>
+  <div class="wisata-grid reveal">
+    <div class="wisata-card" style="background:linear-gradient(135deg,#1a3a2a,#0d4a30)">
+      <div class="wisata-bg">🌾</div>
+      <div class="wisata-overlay"></div>
+      <div class="wisata-content">
+        <span class="wisata-tag">Alam & Budaya</span>
+        <h3>Farm House Lembang</h3>
+        <p>Nuansa Eropa di jalur utama Bandung–Lembang. Spot foto Instagramable yang selalu ramai dikunjungi wisatawan.</p>
+      </div>
+    </div>
+    <div class="wisata-card" style="background:linear-gradient(135deg,#0d1a3a,#0a1a4e)">
+      <div class="wisata-bg">🔭</div>
+      <div class="wisata-overlay"></div>
+      <div class="wisata-content">
+        <span class="wisata-tag">Sains & Edukasi</span>
+        <h3>Observatorium Bosscha</h3>
+        <p>Teleskop Refraktor Ganda Zeiss dan koleksi instrumen astronomi legendaris. Kunjungan individu setiap hari Sabtu.</p>
+      </div>
+    </div>
+    <div class="wisata-card" style="background:linear-gradient(135deg,#2a1a0d,#4a2d0a)">
+      <div class="wisata-bg">🛍️</div>
+      <div class="wisata-overlay"></div>
+      <div class="wisata-content">
+        <span class="wisata-tag">Belanja & Kuliner</span>
+        <h3>Wisata Belanja</h3>
+        <p>Factory outlet, distro legendaris, dan pasar kuliner malam yang menggugah selera — surga belanja Jawa Barat.</p>
+      </div>
+    </div>
+    <div class="wisata-card" style="background:linear-gradient(135deg,#1a0d2a,#2d0a4a)">
+      <div class="wisata-bg">🏛️</div>
+      <div class="wisata-overlay"></div>
+      <div class="wisata-content">
+        <span class="wisata-tag">Sejarah & Arsitektur</span>
+        <h3>Bangunan Kolonial</h3>
+        <p>Arsitektur art-deco peninggalan Belanda tersebar di pusat kota — warisan visual yang memesona di setiap sudut jalan.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Info kota -->
+<section style="background:rgba(255,255,255,.02);border-top:1px solid rgba(255,255,255,.07)">
+<div class="section" id="info">
+  <div class="reveal">
+    <div class="section-tag">Profil Kota</div>
+    <h2 class="section-title">Kota Bandung dalam Data</h2>
+  </div>
+  <div class="info-split reveal">
+    <div>
+      <table class="info-table">
+        <tr><th>Negara</th><td>🇮🇩 Indonesia</td></tr>
+        <tr><th>Provinsi</th><td>Jawa Barat</td></tr>
+        <tr><th>Hari Jadi</th><td>25 September 1810</td></tr>
+        <tr><th>Luas Total</th><td>167.67 km²</td></tr>
+        <tr><th>Bahasa Daerah</th><td>Sunda</td></tr>
+        <tr><th>Kode Telepon</th><td>+62 22</td></tr>
+        <tr><th>Julukan</th><td>Paris van Java · Kota Kembang</td></tr>
+        <tr><th>Ketinggian</th><td>±768 m dpl</td></tr>
+      </table>
+    </div>
+    <div class="city-visual">
+      <span class="city-seal">🌺</span>
+      <div class="city-name-big">Bandung</div>
+      <div class="city-sub">Kota Kembang · Paris van Java</div>
+      <div style="margin-top:24px;display:flex;justify-content:center;gap:12px;flex-wrap:wrap">
+        <span style="background:rgba(59,130,246,.15);border:1px solid rgba(59,130,246,.3);color:#7dd3fc;padding:6px 14px;border-radius:100px;font-size:12px;font-weight:600">Ibu Kota Jabar</span>
+        <span style="background:rgba(59,130,246,.15);border:1px solid rgba(59,130,246,.3);color:#7dd3fc;padding:6px 14px;border-radius:100px;font-size:12px;font-weight:600">Kota Metropolitan</span>
+        <span style="background:rgba(59,130,246,.15);border:1px solid rgba(59,130,246,.3);color:#7dd3fc;padding:6px 14px;border-radius:100px;font-size:12px;font-weight:600">Pusat Kuliner</span>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-wave">🌺</div>
+  <p>Halaman Profil Bandung · Belajar Dasar Pemrograman Web © 2019–2026, Dicoding Academy</p>
+  <p style="margin-top:8px;color:rgba(255,255,255,.2);font-size:12px">Dibuat dengan ❤️ untuk Kota Kembang</p>
+</footer>
+
+<script>
+// Stars
+const bg = document.getElementById('heroBg');
+for(let i=0;i<80;i++){
+  const s=document.createElement('div');
+  s.className='star';
+  const size=Math.random()*2.5+0.5;
+  s.style.cssText=`width:${size}px;height:${size}px;top:${Math.random()*85}%;left:${Math.random()*100}%;animation-delay:${Math.random()*4}s;animation-duration:${2+Math.random()*3}s`;
+  bg.appendChild(s);
+}
+
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    e.preventDefault();
+    const t=document.querySelector(a.getAttribute('href'));
+    if(t) t.scrollIntoView({behavior:'smooth',block:'start'});
+  });
+});
+
+// Reveal on scroll
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible')}});
+},{threshold:0.15});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+// Counter animation
+function animateCount(el,target,suffix,decimals=0){
+  let start=0,duration=2000,startTime=null;
+  function step(ts){
+    if(!startTime) startTime=ts;
+    const progress=Math.min((ts-startTime)/duration,1);
+    const ease=1-Math.pow(1-progress,3);
+    const val=start+(target-start)*ease;
+    el.textContent=decimals?val.toFixed(decimals):Math.round(val);
+    if(progress<1) requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+
+const statsObs=new IntersectionObserver(entries=>{
+  if(entries[0].isIntersecting){
+    animateCount(document.getElementById('s1'),167.67,'km²',2);
+    animateCount(document.getElementById('s2'),768,'m');
+    animateCount(document.getElementById('s3'),2.5,'jt',1);
+    animateCount(document.getElementById('s4'),1810,'');
+    statsObs.disconnect();
+  }
+},{threshold:0.5});
+statsObs.observe(document.querySelector('.stats-bar'));
+</script>
+</body>
+</html>
